@@ -1,32 +1,18 @@
-# ort.toml – Steckbrief dieses Orts für den Saar LiDAR Explorer (Format sle-ort-v1).
+# ort.toml – Steckbrief von Homburg für den Saar LiDAR Explorer (Format sle-ort-v1).
 # Die Pipeline des Explorers liest diese Datei bei jedem Build (pipeline/place.py); `werkzeuge/ort_check.py`
 # prüft sie schon im Pull Request (Schema: werkzeuge/schemas/ort.schema.json). Unbekannte Schlüssel sind Fehler.
 
 schema = "sle-ort-v1"
-
-# Katalog-Id der Gemeinde: klein, ohne Umlaute, z. B. "homburg", "kirkel", "zweibruecken".
-# Sie muss im Orte-Katalog stehen (https://open-kirrberg.github.io/orte-katalog/catalog.json).
-id = "musterort"
-name_de = "Musterort"
-# Amtlicher Gemeindeschlüssel, 8 Ziffern, als Text (steht im Katalog beim Ort).
-ags = "10000000"
-# "SL" (Saarland) oder "RP" (Rheinland-Pfalz)
+id = "homburg"
+name_de = "Homburg"
+ags = "10045114"   # Kreisstadt Homburg, Saarpfalz-Kreis (8 Gemarkungen, 82,6 km²)
 state = "SL"
-# GitHub-Namen der Ortspaten – nur der GitHub-Name, keine Klarnamen oder E-Mail-Adressen.
-maintainers = ["dein-github-name"]
+maintainers = ["huhn511"]
 
 [options]
-# Automatisch erkannte Relikt-Kandidaten (Gruben, Wälle, Hügel …) veröffentlichen?
-# Standard: nein (ADR 0053). Erst einschalten, wenn die Ortspaten die Kandidaten angesehen haben und die
-# Denkmalsituation kennen. Kandidaten sind Hypothesen, keine Funde – Schauen, nicht graben.
-relict_candidates = false
-# Punktwolken nur für ausgewählte Schwerpunkte (≈ 40 MB je km²). Ids aus der Liste der Explorer-Schwerpunkte
-# (pipeline/aois.toml, [[defaults.pointclouds]]) oder eigene Flächen unten. Höchstens 5.
-pointclouds = []
-
-# Eigene Punktwolken-Fläche (optional, mehrfach möglich): Rechteck in EPSG:25832 (UTM 32N), Vielfache von 100 m,
-# höchstens 1 km². Beispiel:
-# [[pointcloud_area]]
-# id = "burgberg"
-# name_de = "Burgberg"
-# bbox = [381500, 5463000, 382500, 5464000]
+# Relikt-Kandidaten: an. Die öffentlichen Gesamtdaten (saar-lidar-data, AOI overall) zeigen die Kandidaten für
+# dieses Gebiet schon (ADR 0009); beim Umzug in dieses Repository bleibt das bewusst so (ADR 0053).
+# Kandidaten sind Hypothesen, keine Funde – Schauen, nicht graben. Kampfmittel-Klassen gibt es hier nie (ADR 0010).
+relict_candidates = true
+# Punktwolken der drei bestehenden Schwerpunkte in Homburg (pipeline/aois.toml, [[defaults.pointclouds]]).
+pointclouds = ["karlsberg-schloss", "homburg-schlossberg", "merburg"]

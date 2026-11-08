@@ -33,7 +33,7 @@ jobs:
     with:
       pipeline_ref: 0d378d9ce28b1abd3179513265e6fa3ba3d986be
       pipeline_version: "0.9.1"
-      place_id: musterort
+      place_id: homburg
     permissions:
       contents: read
       pages: write
